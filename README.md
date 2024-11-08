@@ -85,7 +85,11 @@ To automatically add **Loki** as a data source and create a Grafana dashboard, y
 ```bash
 sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdulsaheel/Loki-Promtail-Setup/refs/heads/main/create_grafana_dashboard.sh)"
 ```
+## If You are using Lambda Function
 
+```bash
+sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdulsaheel/Loki-Promtail-Setup/refs/heads/main/create_grafana_dashboard_lamba_fn.sh)"
+```
 This command:
 - Downloads the **create_grafana_dashboard.sh** script.
 - Runs the script to:
