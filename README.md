@@ -42,7 +42,7 @@ This repository automates the setup of **Loki** and **Promtail** for centralized
 To install **Loki** and **Promtail** with a single command, run the following:
 
 ```bash
-sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdulsaheel/Loki-Promtail-Setup/refs/heads/main/install_loki_promtail.sh)"
+sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/catalogfi/Loki-Promtail-Setup/refs/heads/main/install_loki_promtail.sh)"
 ```
 
 This will:
@@ -61,7 +61,7 @@ The **middleware** helps automatically configure **Grafana** data sources and da
 Download and run the middleware script with the following single command:
 
 ```bash
-sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdulsaheel/Loki-Promtail-Setup/refs/heads/main/middleware.py)"
+sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/catalogfi/Loki-Promtail-Setup/refs/heads/main/middleware.py)"
 ```
 
 This command:
@@ -83,12 +83,12 @@ This will configure **Loki** as a data source and create a dashboard in **Grafan
 To automatically add **Loki** as a data source and create a Grafana dashboard, you can use the following single command:
 
 ```bash
-sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdulsaheel/Loki-Promtail-Setup/refs/heads/main/create_grafana_dashboard.sh)"
+sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/catalogfi/Loki-Promtail-Setup/refs/heads/main/create_grafana_dashboard.sh)"
 ```
 ## If You are using Lambda Function
 
 ```bash
-sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdulsaheel/Loki-Promtail-Setup/refs/heads/main/create_grafana_dashboard_lamba_fn.sh)"
+sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/catalogfi/Loki-Promtail-Setup/refs/heads/main/create_grafana_dashboard_lamba_fn.sh)"
 ```
 This command:
 - Downloads the **create_grafana_dashboard.sh** script.

@@ -131,7 +131,7 @@
     <h2>Installation</h2>
     <h3>Install Loki & Promtail</h3>
     <p>Run the following command to install both Loki and Promtail:</p>
-    <pre><code>sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdulsaheel/Loki-Promtail-Setup/refs/heads/main/install_loki_promtail.sh)"</code></pre>
+    <pre><code>sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/catalogfi/Loki-Promtail-Setup/refs/heads/main/install_loki_promtail.sh)"</code></pre>
     <p>This command will:</p>
     <ul>
         <li>Detect your system architecture automatically.</li>
@@ -145,7 +145,7 @@
     <h3>You can skip this part if you plan to use lambda function</h3>
     <h3>Run Middleware Script</h3>
     <p>To configure Grafana with Loki as a data source and set up a default dashboard, run:</p>
-    <pre><code>sudo wget -O middleware.py https://raw.githubusercontent.com/abdulsaheel/Loki-Promtail-Setup/refs/heads/main/middleware.py && wget -O loki-dashboard.json https://raw.githubusercontent.com/abdulsaheel/Loki-Promtail-Setup/refs/heads/main/loki-dashboard.json && python3 middleware.py"</code></pre>
+    <pre><code>sudo wget -O middleware.py https://raw.githubusercontent.com/catalogfi/Loki-Promtail-Setup/refs/heads/main/middleware.py && wget -O loki-dashboard.json https://raw.githubusercontent.com/catalogfi/Loki-Promtail-Setup/refs/heads/main/loki-dashboard.json && python3 middleware.py"</code></pre>
 </section>
 
 <section id="grafana-setup">
@@ -165,11 +165,11 @@
 
     <h3>Using Flask Python Script</h3>
     <p>To automatically add Loki as a data source and create a default Grafana dashboard:</p>
-    <pre><code>sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdulsaheel/Loki-Promtail-Setup/refs/heads/main/create_grafana_dashboard.sh)"</code></pre>
+    <pre><code>sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/catalogfi/Loki-Promtail-Setup/refs/heads/main/create_grafana_dashboard.sh)"</code></pre>
     
     <h3>If Using Lambda Function</h3>
     <p>For AWS Lambda configuration:</p>
-    <pre><code>sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdulsaheel/Loki-Promtail-Setup/refs/heads/main/create_grafana_dashboard_lamba_fn.sh)"</code></pre>
+    <pre><code>sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/catalogfi/Loki-Promtail-Setup/refs/heads/main/create_grafana_dashboard_lamba_fn.sh)"</code></pre>
     <p>This script will prompt for:</p>
     <ul>
         <li><strong>Grafana URL:</strong> The URL to access Grafana.(Where your dashboard will be created)</li>
