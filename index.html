@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Documentation for Loki and Promtail setup with Grafana integration.">
+    <title>Loki-Promtail Setup Documentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Reset basic styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto Mono', monospace;
+        }
+        body {
+            background-color: #fafafa;
+            color: #333;
+            padding: 20px;
+            max-width: 860px;
+            margin: auto;
+            line-height: 1.7;
+        }
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            color: #222;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            color: #555;
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0.5rem auto 2rem;
+            line-height: 1.5;
+        }
+        section {
+            padding: 2rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        h2 {
+            font-size: 1.8rem;
+            color: #222;
+            margin-bottom: 1rem;
+        }
+        h3 {
+            font-size: 1.25rem;
+            color: #555;
+            margin-top: 1.5rem;
+        }
+        code {
+            background-color: #eaeaea;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            color: #333;
+            font-size: 0.95rem;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+        }
+        ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+            color: #444;
+        }
+        ul li {
+            margin-bottom: 0.5rem;
+        }
+        a {
+            color: #007acc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            font-size: 0.9rem;
+            color: #777;
+            border-top: 1px solid #ddd;
+            margin-top: 2rem;
+        }
+        /* Responsive for smaller screens */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            header h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Loki-Promtail Setup Documentation</h1>
+    <p>A simplified guide to automate the installation and configuration of <strong>Loki</strong> and <strong>Promtail</strong> for centralized logging with <strong>Grafana</strong>. This documentation covers setup steps, configuration details, and troubleshooting tips.</p>
+</header>
+
+<section id="introduction">
+    <h2>Introduction</h2>
+    <p>This repository provides streamlined scripts to automate the setup of Loki and Promtail, offering centralized logging integrated with Grafana. The scripts are designed for ease of use and allow users to set up Loki and Promtail on any compatible Linux server with minimal manual intervention.</p>
+</section>
+
+<section id="features">
+    <h2>Features</h2>
+    <ul>
+        <li><strong>Automated Installation:</strong> One-click setup for Loki and Promtail, with system architecture detection.</li>
+        <li><strong>Grafana Integration:</strong> Automatically configures Grafana with Loki as a data source and sets up a default dashboard.</li>
+        <li><strong>Middleware Support:</strong> Provides middleware scripts for advanced configuration options in Grafana.</li>
+        <li><strong>Extensive Compatibility:</strong> Supports most Linux-based distributions (Ubuntu, CentOS, Fedora).</li>
+    </ul>
+</section>
+
+<section id="installation">
+    <h2>Installation</h2>
+    <h3>Install Loki & Promtail</h3>
+    <p>Run the following command to install both Loki and Promtail:</p>
+    <pre><code>sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdulsaheel/Loki-Promtail-Setup/refs/heads/main/install_loki_promtail.sh)"</code></pre>
+    <p>This command will:</p>
+    <ul>
+        <li>Detect your system architecture automatically.</li>
+        <li>Download and install Loki and Promtail.</li>
+        <li>Set up Promtail to run as a service and start on boot.</li>
+    </ul>
+</section>
+
+<section id="middleware-setup">
+    <h2>Middleware Setup </h2>
+    <h3>You can skip this part if you plan to use lambda function</h3>
+    <h3>Run Middleware Script</h3>
+    <p>To configure Grafana with Loki as a data source and set up a default dashboard, run:</p>
+    <pre><code>sudo wget -O middleware.py https://raw.githubusercontent.com/abdulsaheel/Loki-Promtail-Setup/refs/heads/main/middleware.py && wget -O loki-dashboard.json https://raw.githubusercontent.com/abdulsaheel/Loki-Promtail-Setup/refs/heads/main/loki-dashboard.json && python3 middleware.py"</code></pre>
+</section>
+
+<section id="grafana-setup">
+    <h2>Grafana Data Source & Dashboard Setup</h2>
+    <h3>Generate a Grafana Bearer Token</h3>
+    <p>To configure Grafana with Loki, you need a Bearer Token. Follow these steps to generate one:</p>
+    <ul>
+        <li>Log in to Grafana with an account that has admin privileges.</li>
+        <li>Navigate to <strong>Configuration &rarr; API Keys</strong> in the side menu.</li>
+        <li>Click on <strong>Add API Key</strong>.</li>
+        <li>Enter a name for the token (e.g., <code>Loki-Integration</code>).</li>
+        <li>Select <strong>Admin</strong> as the role to grant full permissions.</li>
+        <li>Click <strong>Create API Key</strong>.</li>
+        <li>Copy the generated token immediately. You won't be able to view it again.</li>
+    </ul>
+    <p><strong>Note:</strong> Store the token securely, as it grants access to configure Grafana and interact with data sources.</p>
+
+    <h3>Using Flask Python Script</h3>
+    <p>To automatically add Loki as a data source and create a default Grafana dashboard:</p>
+    <pre><code>sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdulsaheel/Loki-Promtail-Setup/refs/heads/main/create_grafana_dashboard.sh)"</code></pre>
+    
+    <h3>If Using Lambda Function</h3>
+    <p>For AWS Lambda configuration:</p>
+    <pre><code>sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdulsaheel/Loki-Promtail-Setup/refs/heads/main/create_grafana_dashboard_lamba_fn.sh)"</code></pre>
+    <p>This script will prompt for:</p>
+    <ul>
+        <li><strong>Grafana URL:</strong> The URL to access Grafana.(Where your dashboard will be created)</li>
+        <li><strong>Grafana Bearer Token:</strong> Used for API authentication.</li>
+        <li><strong>Loki Basic Auth Password:</strong> Password for Loki access. (Which you kept during installation)</li>
+        <li><strong>Middleware URL:</strong> The URL to send configuration data. (Lambda Fn URL or Flask Middleware URL)</li>
+    </ul>
+</section>
+
+<section id="accessing-loki">
+    <h2>Accessing Loki UI</h2>
+    <p>Once Loki and Promtail are installed and running, access the Loki UI at:</p>
+    <pre><code>http://&lt;your-server-ip&gt;:3100</code></pre>
+    <p><strong>Default Credentials:</strong></p>
+    <ul>
+        <li><strong>Username:</strong> <code>admin</code></li>
+        <li><strong>Password:</strong> Password configured during the installation</li>
+    </ul>
+</section>
+
+<section id="troubleshooting">
+    <h2>Troubleshooting</h2>
+    <h3>Loki and Promtail Not Starting</h3>
+    <p>Check the status of the services:</p>
+    <pre><code>sudo systemctl status loki</code></pre>
+    <pre><code>sudo systemctl status promtail</code></pre>
+    <p>If the services aren’t running, check logs with:</p>
+    <pre><code>journalctl -u loki</code></pre>
+    <pre><code>journalctl -u promtail</code></pre>
+
+    <h3>Grafana Data Source Not Created</h3>
+    <p>Verify the Loki URL and credentials in the middleware script. Ensure that the Grafana Bearer Token is valid and has permissions to create data sources.</p>
+
+    <h3>Logs Not Showing in Grafana</h3>
+    <p>Check the data source in Grafana:</p>
+    <ul>
+        <li>Navigate to <strong>Configuration → Data Sources → Loki</strong> in Grafana.</li>
+        <li>Ensure the URL and credentials match the settings from the middleware script.</li>
+    </ul>
+</section>
+
+<footer>
+    <p>&copy; 2024 Loki-Promtail Setup Documentation | Licensed under MIT</p>
+</footer>
+
+</body>
+</html>
