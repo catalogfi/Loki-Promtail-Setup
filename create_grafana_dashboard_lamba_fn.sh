@@ -9,7 +9,7 @@ echo
 # Automatically generate UID and names based on the hostname
 hostname=$(hostname)
 datasource_uid="${hostname//./-}-loki-ds"  # Replace dots with hyphens
-data_source_name="${hostname} Loki Logs"  # Data source name set to "hostname Loki Logs"
+data_source_name="${hostname//./-} Loki Logs"  # Data source name set to "hostname Loki Logs"
 dashboard_title="${hostname} Logs Dashboard"  # Dashboard title set to "hostname Logs Dashboard"
 basic_auth_user="admin"  # Username for Loki, fixed as "admin"
 
