@@ -10,8 +10,10 @@ echo
 hostname=$(hostname)
 datasource_uid="${hostname//./-}-loki-ds"  # Replace dots with hyphens
 data_source_name="${hostname//./-} Loki Logs"  # Data source name set to "hostname Loki Logs"
-dashboard_title="${hostname} Logs Dashboard"  # Dashboard title set to "hostname Logs Dashboard"
-basic_auth_user="admin"  # Username for Loki, fixed as "admin"
+
+# Prompt the user for the dashboard title, use default if empty
+read -p "Enter the Dashboard Title (press Enter to use default: '${hostname} Logs Dashboard'): " user_dashboard_title
+dashboard_title="${user_dashboard_title:-${hostname} Logs Dashboard}"  # Use default if not provided
 
 # Define a generic, detailed description for the dashboard
 description="This dashboard provides comprehensive monitoring and log insights for ${hostname}. It integrates Loki as the primary data source to display real-time and historical logs, ensuring seamless observability and troubleshooting."
@@ -36,8 +38,6 @@ json_payload=$(cat <<EOF
 }
 EOF
 )
-
-
 
 # Set the middleware URL, prompt user if needed
 read -p "Enter the Middleware Lambda Function URL (e.g., http://localhost:5000): " middleware_url
