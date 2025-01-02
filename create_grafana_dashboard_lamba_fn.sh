@@ -6,10 +6,13 @@ read -p "Enter the Grafana Bearer Token: " bearer_token
 read -sp "Enter the Basic Auth Password for Loki: " basic_auth_password
 echo
 
-# Automatically generate UID and names based on the hostname
+# Automatically generate UID based on the hostname
 hostname=$(hostname)
 datasource_uid="${hostname//./-}-loki-ds"  # Replace dots with hyphens
-data_source_name="${hostname//./-} Loki Logs"  # Data source name set to "hostname Loki Logs"
+
+# Prompt the user for the data source name, use default if empty
+read -p "Enter the Data Source Name (press Enter to use default: '${hostname} Loki Logs'): " user_data_source_name
+data_source_name="${user_data_source_name:-${hostname} Loki Logs}"  # Use default if not provided
 
 # Prompt the user for the dashboard title, use default if empty
 read -p "Enter the Dashboard Title (press Enter to use default: '${hostname} Logs Dashboard'): " user_dashboard_title
